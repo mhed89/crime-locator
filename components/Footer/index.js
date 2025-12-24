@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="row">
           <div className="col-12 text-center py-4">
             <p className="mb-0">
-              Crime Locator - Data från{' '}
+              Markus Hedenborn - Data från{' '}
               <a 
                 href="https://brottsplatskartan.se" 
                 target="_blank" 
