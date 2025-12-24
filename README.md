@@ -1,13 +1,13 @@
-# Crime Locator 🚨
+# Crime Locator in Sweden
 
 A Next.js application that displays current crime reports in Sweden using the [Brottsplatskartan API](https://brottsplatskartan.se/).
 
 ## Features
 
-- 🗺️ View recent crime reports nationally
-- 📍 Search for crime reports by location
-- ⭐ Favorite crime reports (work in progress)
-- 📱 Responsive design with Bootstrap
+- View recent crime reports nationally
+- Search for crime reports by location
+- Favorite crime reports (work in progress)
+- Responsive design with Bootstrap
 
 ## Tech Stack
 
@@ -61,7 +61,7 @@ yarn start
 
 ## Project Status
 
-✅ **Recently Updated (December 2025)**
+**Recently Updated (December 2025)**
 - Modernized all dependencies to latest versions
 - Migrated to Next.js 14 and React 18
 - Fixed deprecated Next.js patterns
