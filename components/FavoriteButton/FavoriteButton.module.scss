@@ -1,5 +1,22 @@
-.crimeFav {
-  background: transparent;
+.favoriteButton {
+  background:  none;
   border: none;
-  color: #c54662;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #ddd;
+  transition: color 0.2s;
+  padding: 0;
+
+  &:hover {
+    color: #ff6b6b;
+  }
+
+  &.active {
+    color: #ff6b6b;
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
 }

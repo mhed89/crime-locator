@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import FavoriteButton from '../FavoriteButton'
@@ -11,32 +11,35 @@ export default function CrimePost({ data }) {
     <div className={`col-md-6 d-flex`}>
       <div className={`${styles.crimePost}`}>
         <section className={`${styles.crimePostMapImage}`}>
-          {data.image ? (
+          {data.image ?  (
             <Image
               src={data.image}
               alt="kartbild"
-              layout="fill"
-              objectFit="cover"
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              style={{ objectFit: 'cover' }}
             />
           ) : (
-            <span className={`${styles.noImage}`}>Ingen bild genererad.</span>
+            <span className={`${styles.noImage}`}>Ingen bild genererad. </span>
           )}
         </section>
         <section>
           <div className={`${styles.postHeader}`}>
-            <h3>{`${data.title_type}`}</h3>
+            <h3>{data.title_type}</h3>
             <FavoriteButton post={data} />
           </div>
-          <h4>{`${data.title_location}`}</h4>
+          <h4>{data.title_location}</h4>
           <div className={`${styles.time}`}>
             <FontAwesomeIcon icon={faClock} />
-            <small>{`${data.date_human}`}</small>
+            <small>{data.date_human}</small>
           </div>
-          <p>{`${data.content_teaser}`}</p>
-          <Link href={`${data.external_source_link}`}>
-            <a rel="no-referrer noopener" target="_blank">
-              Läs vidare om ärendet
-            </a>
+          <p>{data.content_teaser}</p>
+          <Link 
+            href={data.external_source_link} 
+            rel="noopener noreferrer" 
+            target="_blank"
+          >
+            Läs vidare om ärendet
           </Link>
         </section>
       </div>

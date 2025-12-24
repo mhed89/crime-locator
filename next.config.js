@@ -1,8 +1,18 @@
-const path = require('path')
-
-module.exports = {
-  reactStrictMode: false,
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
   images: {
-    domains: ['kartbilder.brottsplatskartan.se'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'brottsplatskartan.se',
+      },
+      {
+        protocol: 'https',
+        hostname: 'kartbilder.brottsplatskartan.se',
+      },
+    ],
   },
 }
+
+module.exports = nextConfig
