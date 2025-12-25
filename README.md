@@ -11,8 +11,8 @@ A Next.js application that displays current crime reports in Sweden using the [B
 
 ## Tech Stack
 
-- **Next.js 14** - React framework
-- **React 18** - UI library
+- **Next.js 15** - React framework
+- **React 19** - UI library
 - **SWR** - Data fetching and caching
 - **Bootstrap 5** - CSS framework
 - **Sass** - CSS preprocessor
