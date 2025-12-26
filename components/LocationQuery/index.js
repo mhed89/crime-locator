@@ -10,11 +10,11 @@ const fetcher = (url) => fetch(url).then((res) => {
 })
 
 export default function LocationQuery() {
-  const [city, setCity] = useState('Stockholm')
+  const [city, setCity] = useState('')
   const [input, setInput] = useState('')
 
   const { data, error, isLoading } = useSWR(
-    `https://brottsplatskartan.se/api/events/? location=${city}`,
+    city ? `https://brottsplatskartan.se/api/events/?location=${city}` : null,
     fetcher,
   )
 
@@ -25,31 +25,8 @@ export default function LocationQuery() {
     }
   }
 
-  if (error) {
-    return (
-      <div className="container">
-        <div className="alert alert-danger" role="alert">
-          Idag begick servern ett brott. Kunde inte hämta data.
-        </div>
-      </div>
-    )
-  }
-
-  if (isLoading) {
-    return (
-      <div className="container">
-        <div className="text-center p-5">
-          <div className="spinner-border" role="status">
-            <span className="visually-hidden">Laddar brottsdata...</span>
-          </div>
-        </div>
-      </div>
-    )
-  }
-
   return (
     <div>
-      <Header title={`Senast rapporterat i`} location={city} />
       <div className={`container-fluid ${styles.searchSection}`}>
         <div className={`row justify-content-center`}>
           <div className={`col-md-6`}>
@@ -58,7 +35,7 @@ export default function LocationQuery() {
                 type="text"
                 value={input}
                 onChange={(e) => {
-                  setInput(e. target.value)
+                  setInput(e.target.value)
                 }}
                 placeholder="Sök efter område"
               />
@@ -66,16 +43,39 @@ export default function LocationQuery() {
           </div>
         </div>
       </div>
-      <div className="container">
-        <div className="row">
-          {data?.data?.map((crime) => {
-            if (!crime.id) {
-              return null
-            }
-            return <CrimePost data={crime} key={crime.id} />
-          })}
-        </div>
-      </div>
+      {city && (
+        <>
+          <Header title={`Senast rapporterat i`} location={city} />
+          {error && (
+            <div className="container">
+              <div className="alert alert-danger" role="alert">
+                Idag begick servern ett brott. Kunde inte hämta data.
+              </div>
+            </div>
+          )}
+          {isLoading && (
+            <div className="container">
+              <div className="text-center p-5">
+                <div className="spinner-border" role="status">
+                  <span className="visually-hidden">Laddar brottsdata...</span>
+                </div>
+              </div>
+            </div>
+          )}
+          {data && (
+            <div className="container">
+              <div className="row">
+                {data?.data?.map((crime) => {
+                  if (!crime.id) {
+                    return null
+                  }
+                  return <CrimePost data={crime} key={crime.id} />
+                })}
+              </div>
+            </div>
+          )}
+        </>
+      )}
     </div>
   )
 }
